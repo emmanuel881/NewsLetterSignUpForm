@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="left">
+        <h1>Stay updated!</h1>
+        <p class="topInfo">
+          Join 60,000+ product managers recieving monthly updates on:
+        </p>
+        <div class="itemsCon">
+          <div class="items">
+            <img src="./assets/images/icon-list.svg" alt="img" />
+            <p>Product discovery and building what matters</p>
+          </div>
+          <div class="items">
+            <img src="./assets/images/icon-list.svg" alt="img" />
+            <p>Measuring to ensure updates are a success</p>
+          </div>
+          <div class="items">
+            <img src="./assets/images/icon-list.svg" alt="img" />
+            <p>And much more!</p>
+          </div>
+        </div>
+        <form action="" class="emailForm">
+          <b class="emailTitl">Email address</b>
+          <input
+            type="text"
+            placeholder="email@company.com"
+            class="emailEntry"
+            id="UserEmail"
+            onkeyup="validateEmail()"
+            required
+          />
+          <span id="emailError"></span>
+          <button class="emailSubmit" onclick="submitForm()">
+            Subscribe to monthly newletter
+          </button>
+        </form>
+      </div>
+      <div class="right">
+        <img src="./assets/images/illustration-sign-up-desktop.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- success message -->
+    <div id="successMess">
+      <img src="./assets/images/icon-success.svg" alt="" />
+      <h1>Thanks for Subscribing!</h1>
+      <div class="mess">
+        <p>
+          A confirmation message has been sent to <span id="eS"></span>. please
+          open it and click the button to confirm your Subscription
+        </p>
+        <a href="./index.html">
+          <button class="emailSubmit dismiss">Dismiss message</button>
+        </a>
+      </div>
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div>
+    <script>
+      var UserEmail = document.getElementById("UserEmail");
+      var emailError = document.getElementById("emailError");
+
+      function validateEmail() {
+        if (
+          !UserEmail.value.match(
+            /^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/
+          )
+        ) {
+          emailError.innerHTML = "please enter a valid email";
+
+          return false;
+        }
+        event.preventDefault();
+        emailError.innerHTML = "";
+        return true;
+      }
+      function submitForm() {
+        var validate = validateEmail();
+        var contain = document.getElementById("container");
+        var success = document.getElementById("successMess");
+        if (validate) {
+          contain.style.display = "none";
+          success.style.display = "flex";
+          document.getElementById("eS").innerHTML = UserEmail.value;
+        }
+      }
+    </script>
+  </body>
+</html>
